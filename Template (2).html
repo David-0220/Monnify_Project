@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumbo Shop</title>
+    <style>
+        .grid-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background-color: #2A68A5;
+            padding: 20px;
+        }
+
+        .grid-box>div {
+            background-color: #91ABD4;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .grid-box img {
+            height: 100px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #0066CC;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d99;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Jumbo Shop</h1>
+    <div class="grid-box">
+        <div class="product1">
+            <img src="p6.png" alt="Flower">
+            <div class="description">Beautiful flower bouquet for special occasions.</div>
+            <button onclick="payWithMonnify('Flower', 100)">Buy Now - ₦100</button>
+        </div>
+
+        <div class="product2">
+            <img src="p1.png" alt="Ring">
+            <div class="description">Elegant ring with a timeless design.</div>
+            <button onclick="payWithMonnify('Ring', 800)">Buy Now - ₦800</button>
+        </div>
+
+        <div class="product3">
+            <img src="p2.png" alt="Watch">
+            <div class="description">Stylish wristwatch to complement any outfit.</div>
+            <button onclick="payWithMonnify('Watch', 700)">Buy Now - ₦700</button>
+        </div>
+
+        <div class="product4">
+            <img src="p3.png" alt="Teddy">
+            <div class="description">Cute teddy bear for kids and loved ones.</div>
+            <button onclick="payWithMonnify('Teddy', 400)">Buy Now - ₦400</button>
+        </div>
+
+        <div class="product5">
+            <img src="p7.png" alt="Time">
+            <div class="description">Modern wall clock for your home or office.</div>
+            <button onclick="payWithMonnify('Time', 900)">Buy Now - ₦900</button>
+        </div>
+
+        <div class="product6">
+            <img src="p5.png" alt="Bear">
+            <div class="description">Soft bear toy perfect for cuddles.</div>
+            <button onclick="payWithMonnify('Bear', 500)">Buy Now - ₦500</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script>
+    <script>
+        function payWithMonnify(productName = "Shop Product", amount = 1000) {
+            MonnifySDK.initialize({
+                amount: amount,
+                currency: "NGN",
+                reference: String(new Date().getTime()),
+                customerFullName: productName,
+                customerEmail: "ibiyemiajao12@gmail.com",
+                apiKey: "MK_TEST_6WX5B4ZCDA",
+                contractCode: "4383600196",
+                paymentDescription: productName,
+                metadata: {
+                    "name": "David",
+                    "age": 45
+                },
+                onLoadStart: () => {
+                    console.log("loading has started");
+                },
+                onLoadComplete: () => {
+                    console.log("SDK is UP");
+                },
+                onComplete: function (response) {
+                    console.log(response);
+                },
+                onClose: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
